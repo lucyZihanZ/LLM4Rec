@@ -1,0 +1,100 @@
+[
+  {
+    "id": 2,
+    "name": "Energy Booster Coffee",
+    "type": "beverage",
+    "description": "A rich, dark roast coffee blend enhanced with natural ginseng for a sustained energy boost.",
+    "effects": [
+      "energy",
+      "focus"
+    ],
+    "ingredients": [
+      "Arabica Coffee",
+      "Ginseng"
+    ],
+    "price": 14.99,
+    "sales_data": {
+      "units_sold": 250,
+      "last_month_revenue": 3747.5
+    }
+  },
+  {
+    "id": 3,
+    "name": "Immunity Support Smoothie",
+    "type": "beverage",
+    "description": "A nutrient-packed smoothie blend with vitamin C and antioxidants to support immune health.",
+    "effects": [
+      "immune support",
+      "antioxidant"
+    ],
+    "ingredients": [
+      "Orange",
+      "Spinach",
+      "Turmeric"
+    ],
+    "price": 8.99,
+    "sales_data": {
+      "units_sold": 180,
+      "last_month_revenue": 1618.2
+    }
+  },
+  {
+    "id": 4,
+    "name": "Digestive Wellness Shot",
+    "type": "beverage",
+    "description": "A small but mighty shot with ginger and probiotics to promote digestive wellness.",
+    "effects": [
+      "digestive support",
+      "gut health"
+    ],
+    "ingredients": [
+      "Ginger",
+      "Probiotic Cultures"
+    ],
+    "price": 5.99,
+    "sales_data": {
+      "units_sold": 320,
+      "last_month_revenue": 1916.8
+    }
+  },
+  {
+    "id": 5,
+    "name": "Protein Power Bar",
+    "type": "snack",
+    "description": "A high-protein snack bar made with nuts and whey for muscle recovery.",
+    "effects": [
+      "muscle recovery",
+      "energy"
+    ],
+    "ingredients": [
+      "Almonds",
+      "Whey Protein",
+      "Honey"
+    ],
+    "price": 3.49,
+    "sales_data": {
+      "units_sold": 450,
+      "last_month_revenue": 1570.5
+    }
+  },
+  {
+    "id": 6,
+    "name": "Calm Mind Aromatherapy Spray",
+    "type": "wellness",
+    "description": "A relaxing aromatherapy spray made with lavender and sage essential oils.",
+    "effects": [
+      "relaxation",
+      "calmness"
+    ],
+    "ingredients": [
+      "Lavender Oil",
+      "Sage Oil",
+      "Distilled Water"
+    ],
+    "price": 18.99,
+    "sales_data": {
+      "units_sold": 75,
+      "last_month_revenue": 1424.25
+    }
+  }
+]

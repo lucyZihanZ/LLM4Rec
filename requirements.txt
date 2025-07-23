@@ -1,0 +1,7 @@
+transformers>=4.30.0
+torch>=2.0.0 # Note: Installation of torch can vary based on your CUDA/CPU setup.
+             # Refer to pytorch.org for specific installation commands.
+langchain-core>=0.1.0
+langchain-community>=0.0.1
+scikit-learn>=1.0.0
+pandas>=2.0.0
