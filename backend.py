@@ -16,7 +16,7 @@ ragrec = RAGProductRecommender(product_database=products, gemini_api_key=GEMINI_
 @app.get("/rag_augmented_recommend")
 def rag_augmented_recommend(
     name: str = Query(..., description="Product name, partial match supported"),
-    k: int = 3,
+    k: int = 1,
     mode: str = Query("llm", description="'ml' for ML-only, 'llm' for ML+LLM enhanced"),
     user_query: Optional[str] = Query(None, description="Custom user query or preference (optional)")
 ):
