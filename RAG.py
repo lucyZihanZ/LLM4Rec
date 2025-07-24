@@ -19,21 +19,18 @@ class RAGProductRecommender:
         embed_model_name='all-MiniLM-L6-v2',
         gemini_api_key=api_key()
     ):
-        # 初始化嵌入模型
         self.embedder = SentenceTransformer(embed_model_name)
         self.product_database = None
         self.product_embeddings = None
         if product_database is not None:
             self.set_product_database(product_database)
-        # 初始化 Gemini
         if gemini_api_key:
             genai.configure(api_key=gemini_api_key)
-            self.gemini_model = genai.GenerativeModel("gemini-1.5-flash")  # 或"gemini-1.5-pro"
+            self.gemini_model = genai.GenerativeModel("gemini-1.5-flash")  
         else:
             self.gemini_model = None
 
     def set_product_database(self, product_database):
-        # Convert list of dicts to DataFrame if needed, then reset index
         if isinstance(product_database, list):
             product_database = pd.DataFrame(product_database)
         self.product_database = product_database.reset_index(drop=True)
@@ -86,28 +83,6 @@ class RAGProductRecommender:
                 "\n"
             )
         return context_string.strip()
-
-    # def generate_similar_products_with_llm(self, context_string: str, user_query: str, max_new_tokens: int = 32) -> str:
-    #     """
-    #     Generates product recommendations using the loaded LLM.
-    #     """
-    #     if self.llm_model is None or self.tokenizer is None:
-    #         return "LLM model or tokenizer not loaded. Cannot generate recommendations."
-
-    #     # IMPORTANT FIX: Use the imported PROMPT_TEMPLATE and then format it
-    #     formatted_prompt = PROMPT_TEMPLATE.format(context=context_string, query=user_query)
-
-    #     inputs = self.tokenizer(formatted_prompt, return_tensors="pt").to(self.llm_model.device)
-    #     outputs = self.llm_model.generate(**inputs, max_new_tokens=max_new_tokens, do_sample=True, temperature=0.7)
-    #     decoded = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
-        
-    #     # Safely remove the prompt part. `startswith` is robust.
-    #     if decoded.startswith(formatted_prompt):
-    #         return decoded[len(formatted_prompt):].strip()
-    #     else:
-    #         # Fallback if the model doesn't perfectly reproduce the prompt (e.g., if max_new_tokens is too low)
-    #         print("Warning: LLM output did not start with the prompt. Returning full decoded output.")
-    #         return decoded.strip()
     def generate_similar_products_with_llm(self, context_string, user_query, max_new_tokens=256):
         prompt = PROMPT_TEMPLATE.format(context=context_string, query=user_query)
         if self.gemini_model is None:
@@ -140,8 +115,6 @@ class RAGProductRecommender:
             
         # Adjust k if it's greater than available candidates
         actual_k = min(k, num_candidates)
-        
-        # If actual_k is 0 (e.g., if num_candidates was 0), return empty
         if actual_k == 0:
              return []
 
