@@ -6,7 +6,7 @@ from rag import RAGProductRecommender
 PRODUCT_DATABASE_PATH = 'products.json'
 try:
     product_data = pd.read_json(PRODUCT_DATABASE_PATH)
-    GEMINI_API_KEY = os.getenv("GEMINI_API_KEY") or "AIzaSyB7NlSYpIG5SxaX8fkYCdw8EFpC4_w7Ojg"
+    GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
     if 'recommender' not in st.session_state:
         st.session_state.recommender = RAGProductRecommender(
