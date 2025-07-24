@@ -164,7 +164,7 @@ if __name__ == "__main__":
     import json
     with open("products.json", "r") as f:
         products = json.load(f)
-    gemini_api_key = "AIzaSyB7NlSYpIG5SxaX8fkYCdw8EFpC4_w7Ojg"
+    gemini_api_key = "api-key"
     recommender = RAGProductRecommender(
         product_database=products,
         gemini_api_key=gemini_api_key
