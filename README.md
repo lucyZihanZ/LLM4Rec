@@ -19,7 +19,7 @@ The system supports two recommendation modes:
 
 3. Leveraging both the top-k relevant information and the enhanced recommendations, we utilize RAG (Retrieval-Augmented Generation) and LLMs to infer additional potentially relevant items.
 
-All results are presented in a user-friendly interface. If users prefer more precise and standard answers, they can select the "ML" mode. For more diverse and comprehensive recommendations, they can choose the "ML + LLM" mode.
+All results are presented in a user-friendly interface. If users prefer more precise and standard answers, they can select the "Precise Recommendation" mode. For more diverse and comprehensive recommendations, they can choose the "Diverse suggestions" mode.
 
 
 
