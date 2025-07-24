@@ -1,29 +1,55 @@
 import streamlit as st
+import pandas as pd
+import requests
 
-# 这里假设你有如下函数（从你的RAG/ML后端导入）
-# from backend import get_recommendations
+# Load products for display (front-end only, not used for actual recommendation)
+products = pd.read_json('products.json')
+product_names = products["name"].unique().tolist()
 
-def get_recommendations(user_query):
-    # 这里举例，实际替换为你后端推荐函数
-    return [
-        {"name": "Energy Booster Coffee", "desc": "Rich coffee, boosts energy."},
-        {"name": "Immunity Support Smoothie", "desc": "Packed with vitamin C."},
-        {"name": "Protein Power Bar", "desc": "High protein for muscle recovery."}
-    ], "Augmented info: These products are selected based on your preferences."
+st.title("RAG LLM Product Recommendation Demo")
 
-st.title("Product Recommendation Demo (RAG + ML)")
-st.write("Enter your needs or questions and get personalized product suggestions!")
+# 1. Product name selection
+selected_name = st.selectbox("Select or enter a product name", product_names)
+user_query = st.text_input("Optionally describe your needs (leave empty to use product description):", value=selected_name)
+top_k = st.number_input("Number of recommendations", 1, 10, 3)
 
-# 用户输入
-user_query = st.text_input("What are you looking for?", "")
+# 2. Recommendation mode selector
+recommend_mode = st.radio(
+    "Recommendation Mode",
+    options=["ML Content-based Only", "ML + LLM Enhanced (Gemini)"],
+    index=1
+)
 
-if st.button("Recommend"):
-    if user_query.strip() == "":
-        st.warning("Please enter a query!")
+if st.button("Get Recommendation"):
+    params = {
+        "name": selected_name,
+        "k": top_k,
+        "mode": "ml" if recommend_mode.startswith("ML Content") else "llm"
+    }
+    # Only add user_query if user changed it (not just product name)
+    if user_query and user_query != selected_name:
+        params["user_query"] = user_query
+
+    try:
+        resp = requests.get("http://localhost:8000/rag_augmented_recommend", params=params, timeout=30)
+        resp.raise_for_status()
+        result = resp.json()
+    except Exception as e:
+        st.error(f"Failed to contact backend: {e}")
+        st.stop()
+
+    if result.get("error"):
+        st.error(result["error"])
+    elif params["mode"] == "ml":
+        st.subheader("ML Recommended Products (Content Similarity)")
+        for prod in result.get("recommendations", []):
+            st.markdown(f"- **{prod.get('name', 'Unknown')}** | {prod.get('personalized_description', prod.get('description', ''))}")
+        st.markdown("**Recommended Product Names:** " + ", ".join(result.get("recommended_names", [])))
     else:
-        recs, aug_info = get_recommendations(user_query)
-        st.subheader("Recommended Products")
-        for rec in recs:
-            st.write(f"**{rec['name']}**: {rec['desc']}")
-        st.subheader("Augmented Info (RAG)")
-        st.write(aug_info)
+        st.subheader("Augmented Product Recommendation Context")
+        st.code(result.get("context_summary", ""), language="markdown")
+        st.subheader("LLM-generated Recommendation & Explanation")
+        st.code(result.get("llm_generated_response", ""), language="markdown")
+        st.markdown("**Recommended Product Names:** " + ", ".join(result.get("recommended_names", [])))
+
+

@@ -1,16 +1,10 @@
-import pandas as pd
-from prepare import load_product_database, add_combined_features
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
-
-import warnings
-warnings.filterwarnings('ignore')
-
 import json
-import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+import pandas as pd
+import warnings
 import os
+warnings.filterwarnings('ignore')
 
 class ProductRecommender:
     """
@@ -91,7 +85,6 @@ class ProductRecommender:
     def retrieve_product_details(self, product_id: str) -> dict | None:
         """
         Retrieves detailed information for a given product ID from the internal database.
-
         Args:
             product_id (str): The unique identifier of the product (as a string).
 
@@ -105,15 +98,6 @@ class ProductRecommender:
         """
         Retrieves detailed product information for recommended IDs and augments
         the recommendations with richer details and potentially personalized descriptions.
-
-        Args:
-            recommended_ids (list): A list of product IDs recommended by the algorithm.
-            user_preferences (dict, optional): A dictionary of user preferences
-                                              (e.g., {"prefers_vegan": True, "budget_conscious": True}).
-                                              Defaults to None.
-
-        Returns:
-            list: A list of augmented product recommendation dictionaries.
         """
         augmented_recommendations = []
         for prod_id in recommended_ids:
@@ -150,13 +134,6 @@ class ProductRecommender:
         """
         Retrieves and augments product details for a list of product IDs,
         then formats them into a single string suitable as context for an LLM.
-
-        Args:
-            product_ids (list): A list of product IDs.
-            user_preferences (dict, optional): User preferences for personalization.
-
-        Returns:
-            str: A formatted string containing augmented product information.
         """
         augmented_products = self.enhance_recommendations(product_ids, user_preferences)
         
