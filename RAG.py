@@ -9,7 +9,7 @@ def api_key():
     """
     Return your api key as a string.
     """
-    key = "AIzaSyB7NlSYpIG5SxaX8fkYCdw8EFpC4_w7Ojg"
+    key = "api-key"
     return key
 
 class RAGProductRecommender:

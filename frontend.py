@@ -23,14 +23,14 @@ except Exception as e:
 products = pd.read_json('products.json')
 product_names = products["name"].unique().tolist()
 
-st.title("RAG LLM Product Recommendation Demo")
+st.title("RAG LLM Product Recommendation")
 selected_name = st.selectbox("Select or enter a product name", product_names)
 user_query = st.text_input("Optionally describe your needs (leave empty to use product description):", value=selected_name)
 
 top_k = st.number_input("Number of recommendations", 1, 10, 3)
 recommend_mode = st.radio(
     "Recommendation Mode",
-    options=["ML Content-based Only", "ML + LLM Enhanced (Gemini)"],
+    options=["Precise Recommendations", "Diverse Suggestions"],
     index=1
 )
 if st.button("Get Recommendation"):
@@ -50,7 +50,7 @@ if st.button("Get Recommendation"):
             recommended_products_details.append(prod_row.to_dict())
             recommended_names.append(prod_row['name'])
 
-        st.subheader("ML Recommended Products (Content Similarity)")
+        st.subheader("Precise Recommendations")
         for prod in recommended_products_details:
             st.markdown(f"- **{prod.get('name', 'Unknown')}** | {prod.get('personalized_description', prod.get('description', ''))}")
         st.markdown("**Recommended Product Names:** " + ", ".join(recommended_names))
@@ -75,6 +75,6 @@ if st.button("Get Recommendation"):
 
         st.subheader("Augmented Product Recommendation Context")
         st.code(rag_result.get("context_summary", ""), language="markdown")
-        st.subheader("LLM-generated Recommendation & Explanation")
+        st.subheader("Diverse Suggestions")
         st.code(rag_result.get("llm_generated_response", ""), language="markdown")
         st.markdown("**Recommended Product Names:** " + ", ".join(recommended_names))
