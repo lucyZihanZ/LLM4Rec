@@ -6,7 +6,7 @@
 
 ## 🚀 Overview
 
-This project implements a **Retrieval-Augmented Generation (RAG)** system for product recommendations. It leverages a combination of **Sentence Transformers** for efficient product similarity search and a **Google Gemini 1.5 Flash Large Language Model (LLM)** for generating nuanced, contextualized, and explainable product recommendations. The entire application is presented through an interactive **Streamlit** web interface, allowing users to explore recommendations based on various criteria.
+This project implements a **Retrieval-Augmented Generation (RAG)** system for product recommendations. It leverages a combination of **Sentence Transformers** for efficient product similarity search and a **LLM** for generating nuanced, contextualized, and explainable product recommendations. The entire application is presented through an interactive **Streamlit** web interface, allowing users to explore recommendations based on various criteria.
 
 The system supports two recommendation modes:
 1.  **ML Content-based Only:** Purely relies on product description similarity to find top-k relevant items.
