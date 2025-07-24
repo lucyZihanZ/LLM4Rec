@@ -10,7 +10,7 @@ class RAGProductRecommender:
         product_database=None,          # 支持DataFrame或list[dict]，可为空
         embed_model_name='all-MiniLM-L6-v2',
         llm_model_name='mistralai/Mistral-7B-Instruct-v0.1',
-        hf_token='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'
+        hf_token=api-key
     ):
         if hf_token:
             login(token=hf_token)
@@ -129,7 +129,7 @@ if __name__ == "__main__":
     recommender = RAGProductRecommender(
         embed_model_name='all-MiniLM-L6-v2',
         llm_model_name='mistralai/Mistral-7B-Instruct-v0.1',
-        hf_token="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"
+        hf_token="api-key"
     )
     # 传入你的数据
     recommender.set_product_database(products)
