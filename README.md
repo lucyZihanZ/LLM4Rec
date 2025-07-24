@@ -45,3 +45,31 @@ If your code is in a Git repository, start by cloning it:
 ```bash
 git clone <your-repository-url>
 cd <your-repository-folder>
+```
+### 2. Create and Activate a Virtual Environment
+It's highly recommended to use a virtual environment to manage dependencies. Due to known compatibility issues with PyTorch on Python 3.12, Python 3.10 or 3.11 is strongly recommended.
+```bash
+# Create a new conda environment with Python 3.10
+conda create -n rag_recommender_env python=3.10
+
+# Activate the environment
+conda activate rag_recommender_env
+```
+###3. Install Dependencies
+Install all necessary Python packages. Ensure you install PyTorch first, specifically choosing the correct version for your CUDA setup (if you have an NVIDIA GPU) or for CPU-only.
+
+## 🚀 How to Run
+After completing the setup steps:
+Activate your virtual environment:
+
+Bash
+```
+conda activate rag_recommender_env
+Run the Streamlit application:
+```
+Bash
+```
+streamlit run frontend.py
+```
+
+
