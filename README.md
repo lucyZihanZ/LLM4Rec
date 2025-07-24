@@ -12,7 +12,16 @@ The system supports two recommendation modes:
 1.  **ML Content-based Only:** Purely relies on product description similarity to find top-k relevant items.
 2.  **ML + LLM Enhanced (Gemini):** First retrieves top-k similar products using content similarity, then augments this information into a prompt for the Gemini LLM to generate more sophisticated and human-like recommendations.
 
----
+## Work Flow:
+1. We use a traditional content-based similarity search to retrieve relevant information.
+
+2. Based on the top-k most relevant results, we further enhance recommendations by incorporating potential user preferences.
+
+3. Leveraging both the top-k relevant information and the enhanced recommendations, we utilize RAG (Retrieval-Augmented Generation) and LLMs to infer additional potentially relevant items.
+
+All results are presented in a user-friendly interface. If users prefer more precise and standard answers, they can select the "ML" mode. For more diverse and comprehensive recommendations, they can choose the "ML + LLM" mode.
+
+
 
 ## ✨ Features
 
