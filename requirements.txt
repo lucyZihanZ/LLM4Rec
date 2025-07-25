@@ -5,3 +5,4 @@ langchain-core>=0.1.0
 langchain-community>=0.0.1
 scikit-learn>=1.0.0
 pandas>=2.0.0
+streamlit
