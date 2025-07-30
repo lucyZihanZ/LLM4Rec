@@ -21,8 +21,10 @@ The system supports two recommendation modes:
 
 All results are presented in a user-friendly interface. If users prefer more precise and standard answers, they can select the "Precise Recommendation" mode. For more diverse and comprehensive recommendations, they can choose the "Diverse suggestions" mode.
 
-## User-friendly interface
-![Interface](../images/interface.png)
+## User-friendly Interface
+![Interface](../images/Interface.png)
+![Customized Recommendations](../images/Recommendations.png)
+
 
 
 ## ✨ Features
